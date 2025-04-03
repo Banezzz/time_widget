@@ -64,3 +64,24 @@ Contributions welcome! Feel free to:
 
 ---
 Made with ❤️ for Crypto Traders 
+
+First release of Crypto Time Widget - Your Global Crypto Market Time Companion
+
+🌟 Features:
+- 💫 Real-time display of major crypto trading hub times
+- 🎨 Modern dark theme UI optimized for trading
+- 🎯 Always-on-top window for easy reference
+- 🖱️ Draggable interface
+- 🌍 Coverage of all major crypto trading hubs
+
+📥 Installation:
+1. Download time_widget.zip
+2. Extract the contents
+3. Run main.exe
+
+🔧 Requirements:
+- Windows 10/11
+- No additional installation needed
+
+📝 Note:
+This is the initial release. Your feedback and suggestions are welcome! 
