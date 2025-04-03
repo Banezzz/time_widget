@@ -12,7 +12,7 @@ class TimeWidget(tk.Tk):
         self.title("Crypto Time Zones")
         self.attributes("-topmost", True)
         self.overrideredirect(True)
-        self.geometry("400x500")
+        self.geometry("450x650")  # Increased width for UTC offset
         self.configure(bg='#1E1E1E')  # Dark theme background
         
         # Create main frame
@@ -42,16 +42,52 @@ class TimeWidget(tk.Tk):
         
         # Create labels for different time zones with their market significance
         self.time_labels = {}
-        self.create_time_label("UTC", "🌍 UTC (Global Reference)")
-        self.create_time_label("Asia/Tokyo", "🇯🇵 Tokyo (Asian Market Open)")
-        self.create_time_label("Asia/Hong_Kong", "🇭🇰 Hong Kong (Asian Trading Hub)")
-        self.create_time_label("Asia/Singapore", "🇸🇬 Singapore (Asian Crypto Hub)")
-        self.create_time_label("Europe/London", "🇬🇧 London (European Market Open)")
-        self.create_time_label("Europe/Berlin", "🇩🇪 Berlin (EU Trading Hub)")
-        self.create_time_label("America/New_York", "🇺🇸 New York (US Market Open)")
-        self.create_time_label("America/Chicago", "🇺🇸 Chicago (CME Bitcoin Futures)")
-        self.create_time_label("America/Los_Angeles", "🇺🇸 San Francisco (Coinbase HQ)")
-        self.create_time_label("Asia/Seoul", "🇰🇷 Seoul (Korean Market)")
+        
+        # Get local timezone
+        local_tz = datetime.now().astimezone().tzinfo
+        
+        # Get current UTC offset for each timezone
+        now = datetime.now(pytz.UTC)
+        
+        def get_utc_offset(tz_name):
+            if tz_name == 'local':
+                return datetime.now().astimezone().utcoffset()
+            elif tz_name == 'UTC':
+                return datetime.timedelta(0)
+            else:
+                tz = pytz.timezone(tz_name)
+                offset = now.astimezone(tz).utcoffset()
+                return offset
+        
+        def format_utc_offset(offset):
+            if offset is None:
+                return ""
+            hours = offset.total_seconds() / 3600
+            return f"UTC{'+' if hours >= 0 else ''}{int(hours):d}"
+        
+        # Add time zones in chronological order (based on UTC+0)
+        self.create_time_label("local", 
+            f"🏠 Local Time ({str(local_tz)}) [{format_utc_offset(get_utc_offset('local'))}]")
+        self.create_time_label("UTC", 
+            f"🌍 UTC (Global Reference) [UTC+0]")
+        self.create_time_label("Asia/Seoul", 
+            f"🇰🇷 Seoul (Korean Market) [{format_utc_offset(get_utc_offset('Asia/Seoul'))}]")
+        self.create_time_label("Asia/Tokyo", 
+            f"🇯🇵 Tokyo (Asian Market Open) [{format_utc_offset(get_utc_offset('Asia/Tokyo'))}]")
+        self.create_time_label("Asia/Hong_Kong", 
+            f"🇭🇰 Hong Kong (Asian Trading Hub) [{format_utc_offset(get_utc_offset('Asia/Hong_Kong'))}]")
+        self.create_time_label("Asia/Singapore", 
+            f"🇸🇬 Singapore (Asian Crypto Hub) [{format_utc_offset(get_utc_offset('Asia/Singapore'))}]")
+        self.create_time_label("Europe/London", 
+            f"🇬🇧 London (European Market Open) [{format_utc_offset(get_utc_offset('Europe/London'))}]")
+        self.create_time_label("Europe/Berlin", 
+            f"🇩🇪 Berlin (EU Trading Hub) [{format_utc_offset(get_utc_offset('Europe/Berlin'))}]")
+        self.create_time_label("America/New_York", 
+            f"🇺🇸 New York (US Market Open) [{format_utc_offset(get_utc_offset('America/New_York'))}]")
+        self.create_time_label("America/Chicago", 
+            f"🇺🇸 Chicago (CME Bitcoin Futures) [{format_utc_offset(get_utc_offset('America/Chicago'))}]")
+        self.create_time_label("America/Los_Angeles", 
+            f"🇺🇸 San Francisco (Coinbase HQ) [{format_utc_offset(get_utc_offset('America/Los_Angeles'))}]")
         
         # Add mouse events for window dragging
         self.bind("<ButtonPress-1>", self.start_move)
@@ -97,8 +133,13 @@ class TimeWidget(tk.Tk):
         now_utc = datetime.now(pytz.UTC)
         
         for tz_name, label_info in self.time_labels.items():
-            tz = pytz.timezone(tz_name)
-            local_time = now_utc.astimezone(tz)
+            if tz_name == 'local':
+                # Handle local time
+                local_time = datetime.now()
+            else:
+                # Handle other time zones
+                tz = pytz.timezone(tz_name)
+                local_time = now_utc.astimezone(tz)
             
             # Format time with custom styling
             time_str = local_time.strftime("%H:%M:%S")
