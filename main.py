@@ -12,7 +12,7 @@ class TimeWidget(tk.Tk):
         self.title("Crypto Time Zones")
         self.attributes("-topmost", True)
         self.overrideredirect(True)
-        self.geometry("450x650")  # Increased width for UTC offset
+        self.geometry("400x550")  # Reduced height due to fewer time zones
         self.configure(bg='#1E1E1E')  # Dark theme background
         
         # Create main frame
@@ -23,7 +23,7 @@ class TimeWidget(tk.Tk):
         title_frame = tk.Frame(self.main_frame, bg='#1E1E1E')
         title_frame.pack(fill='x', pady=(0, 10))
         
-        title_label = tk.Label(title_frame, text="🌐 Crypto Trading Times", 
+        title_label = tk.Label(title_frame, text="Global Crypto Trading Times", 
                              font=("Helvetica", 14, "bold"), 
                              bg='#1E1E1E', fg='#00FF00')
         title_label.pack(side='left', pady=5)
@@ -67,27 +67,23 @@ class TimeWidget(tk.Tk):
         
         # Add time zones in chronological order (based on UTC+0)
         self.create_time_label("local", 
-            f"🏠 Local Time ({str(local_tz)}) [{format_utc_offset(get_utc_offset('local'))}]")
+            f"Local Time ({str(local_tz)}) [{format_utc_offset(get_utc_offset('local'))}]")
         self.create_time_label("UTC", 
-            f"🌍 UTC (Global Reference) [UTC+0]")
-        self.create_time_label("Asia/Seoul", 
-            f"🇰🇷 Seoul (Korean Market) [{format_utc_offset(get_utc_offset('Asia/Seoul'))}]")
+            f"UTC (Global Reference) [UTC+0]")
         self.create_time_label("Asia/Tokyo", 
-            f"🇯🇵 Tokyo (Asian Market Open) [{format_utc_offset(get_utc_offset('Asia/Tokyo'))}]")
+            f"Tokyo (Asian Market Open) [{format_utc_offset(get_utc_offset('Asia/Tokyo'))}]")
         self.create_time_label("Asia/Hong_Kong", 
-            f"🇭🇰 Hong Kong (Asian Trading Hub) [{format_utc_offset(get_utc_offset('Asia/Hong_Kong'))}]")
-        self.create_time_label("Asia/Singapore", 
-            f"🇸🇬 Singapore (Asian Crypto Hub) [{format_utc_offset(get_utc_offset('Asia/Singapore'))}]")
+            f"Hong Kong (Asian Trading Hub) [{format_utc_offset(get_utc_offset('Asia/Hong_Kong'))}]")
         self.create_time_label("Europe/London", 
-            f"🇬🇧 London (European Market Open) [{format_utc_offset(get_utc_offset('Europe/London'))}]")
+            f"London (European Market Open) [{format_utc_offset(get_utc_offset('Europe/London'))}]")
         self.create_time_label("Europe/Berlin", 
-            f"🇩🇪 Berlin (EU Trading Hub) [{format_utc_offset(get_utc_offset('Europe/Berlin'))}]")
+            f"Berlin (EU Trading Hub) [{format_utc_offset(get_utc_offset('Europe/Berlin'))}]")
         self.create_time_label("America/New_York", 
-            f"🇺🇸 New York (US Market Open) [{format_utc_offset(get_utc_offset('America/New_York'))}]")
+            f"New York (US Market Open) [{format_utc_offset(get_utc_offset('America/New_York'))}]")
         self.create_time_label("America/Chicago", 
-            f"🇺🇸 Chicago (CME Bitcoin Futures) [{format_utc_offset(get_utc_offset('America/Chicago'))}]")
+            f"Chicago (CME Bitcoin Futures) [{format_utc_offset(get_utc_offset('America/Chicago'))}]")
         self.create_time_label("America/Los_Angeles", 
-            f"🇺🇸 San Francisco (Coinbase HQ) [{format_utc_offset(get_utc_offset('America/Los_Angeles'))}]")
+            f"San Francisco (Coinbase HQ) [{format_utc_offset(get_utc_offset('America/Los_Angeles'))}]")
         
         # Add mouse events for window dragging
         self.bind("<ButtonPress-1>", self.start_move)
