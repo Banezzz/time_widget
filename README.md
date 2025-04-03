@@ -1,17 +1,18 @@
 # Crypto Time Widget
 
-A minimalist desktop widget for cryptocurrency traders to track market hours across global trading hubs. Built with Python and modern UI design.
+A professional desktop widget for cryptocurrency traders to monitor global market hours across major trading hubs. Built with Python, this tool provides real-time clock display with UTC offsets for all major cryptocurrency trading centers.
 
-![Widget Preview](assets/preview.png)
+## Features
 
-## 🌟 Features
-
-- 💫 Real-time clock display for major crypto trading hubs
-- 🎯 Always-on-top window for easy reference
-- 🖱️ Draggable interface - place it anywhere on your screen
-- 🎨 Modern dark theme UI optimized for long trading sessions
-- 🌍 Global coverage of major crypto markets:
-  - UTC (Global Reference Time)
+- Real-time clock display for major crypto trading hubs
+- Always-on-top window for constant visibility
+- Draggable interface for flexible positioning
+- Modern dark theme UI optimized for extended trading sessions
+- UTC offset display for each time zone
+- Comprehensive coverage of global markets:
+  - Local Time
+  - UTC (Global Reference)
+  - Seoul (Korean Market)
   - Tokyo (Asian Market Open)
   - Hong Kong (Asian Trading Hub)
   - Singapore (Asian Crypto Hub)
@@ -20,16 +21,15 @@ A minimalist desktop widget for cryptocurrency traders to track market hours acr
   - New York (US Market Open)
   - Chicago (CME Bitcoin Futures)
   - San Francisco (Coinbase HQ)
-  - Seoul (Korean Market)
 
-## 🚀 Quick Start
+## Installation
 
-### Download and Run
-1. Go to [Releases](https://github.com/Banezzz/time_widget/releases)
-2. Download the latest `time_widget.zip`
-3. Extract and run `main.exe`
+### Binary Installation
+1. Download the latest release from [Releases](https://github.com/Banezzz/time_widget/releases)
+2. Extract time_widget.zip
+3. Run crypto_time_widget.exe
 
-### Run from Source
+### Source Installation
 ```bash
 git clone https://github.com/Banezzz/time_widget.git
 cd time_widget
@@ -37,51 +37,52 @@ pip install -r requirements.txt
 python main.py
 ```
 
-## 🛠️ Development
+## Technical Details
 
 ### Requirements
 - Python 3.12+
 - pytz
 - tkinter (included with Python)
 
-### Build Instructions
+### Development Setup
 ```bash
 pip install pyinstaller
 pyinstaller --onefile --windowed main.py
 ```
 
-## 📝 License
-[MIT License](LICENSE) - feel free to use in your trading setup!
+### Architecture
+- Built with Python's tkinter for lightweight GUI
+- Uses pytz for accurate timezone handling
+- Real-time updates with 1-second precision
+- Minimal system resource usage
+- No external dependencies beyond Python standard library and pytz
 
-## 🤝 Contributing
-Contributions welcome! Feel free to:
-- Open issues for feature requests
-- Submit pull requests
-- Share your trading time zone needs
+## Usage
 
-## 📬 Contact
+The widget displays:
+- Time zone name and market significance
+- UTC offset for each location
+- Current time in HH:MM:SS format
+- Current date in YYYY-MM-DD format
+
+The window can be:
+- Dragged to any screen position
+- Kept on top of other windows
+- Closed via the integrated close button
+
+## License
+[MIT License](LICENSE)
+
+## Contributing
+Contributions are welcome. Please follow these steps:
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## Contact
 - GitHub: [@Banezzz](https://github.com/Banezzz)
 
 ---
-Made with ❤️ for Crypto Traders 
-
-First release of Crypto Time Widget - Your Global Crypto Market Time Companion
-
-🌟 Features:
-- 💫 Real-time display of major crypto trading hub times
-- 🎨 Modern dark theme UI optimized for trading
-- 🎯 Always-on-top window for easy reference
-- 🖱️ Draggable interface
-- 🌍 Coverage of all major crypto trading hubs
-
-📥 Installation:
-1. Download time_widget.zip
-2. Extract the contents
-3. Run main.exe
-
-🔧 Requirements:
-- Windows 10/11
-- No additional installation needed
-
-📝 Note:
-This is the initial release. Your feedback and suggestions are welcome! 
+Developed for cryptocurrency traders who need precise global market time tracking 
